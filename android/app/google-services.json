@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "387213517662",
+    "project_id": "zesty-d76ca",
+    "storage_bucket": "zesty-d76ca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387213517662:android:9ae4be47fa7e91244b25cf",
+        "android_client_info": {
+          "package_name": "com.example.zesty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClFKMHVz2EkpZ6hwd2WlHqgcz0jasI8ME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

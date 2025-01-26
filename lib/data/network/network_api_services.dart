@@ -13,15 +13,15 @@ class NetworkApiServices extends BaseApiServices {
     try {
       final response =
           await http.get(Uri.parse(url)).timeout(const Duration(seconds: 50));
+      responseJson = returnResponse(response);
 
       if (response.statusCode == 200) {}
-
-      return responseJson;
     } on SocketException {
       throw NoInternetException("No Internet Connection");
     } on TimeoutException {
       throw FetchDataException('Timeout Try again');
     }
+    return responseJson;
   }
 
   dynamic returnResponse(http.Response response) {

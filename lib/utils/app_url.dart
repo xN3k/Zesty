@@ -1,3 +1,3 @@
 class AppUrl {
-  static String productUrl = "https://fakestoreapi.com/products";
+  static String productUrl = "https://dummyjson.com/products";
 }

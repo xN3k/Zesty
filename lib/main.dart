@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:zesty/config/routes_name.dart';
+import 'package:zesty/dependency_injection/service_locator.dart';
 
 import 'config/routes.dart';
 
+final ServiceLocator dependencyInjector = ServiceLocator();
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  dependencyInjector.serviceLocator();
   runApp(const MyApp());
 }
 

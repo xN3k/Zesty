@@ -4,6 +4,8 @@ import 'package:zesty/bloc/product/product_bloc.dart';
 import 'package:zesty/data/response/response.dart';
 import 'package:zesty/dependency_injection/service_locator.dart';
 
+import 'widgets/product_card.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -29,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Zesty"),
         centerTitle: true,
@@ -58,53 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisSpacing: 16,
                       ),
                       itemBuilder: (context, index) {
-                        return SizedBox(
-                          width: 140,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AspectRatio(
-                                  aspectRatio: 1.0,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF979797)
-                                          .withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Image.network(
-                                      productList.products[index].thumbnail,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  productList.products[index].title,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "\$${productList.products[index].price}",
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xFFFF7643),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        );
+                        final product = productList.products[index];
+                        return ProductCard(product: product);
                       },
                     );
                   case Status.error:

@@ -1,5 +1,5 @@
 class RoutesName {
   static const splash = "splash";
   static const home = "home";
-  static const product = "product";
+  static const productDetail = "product_detail";
 }

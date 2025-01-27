@@ -26,8 +26,22 @@ class Products with _$Products {
     @Default('') String brand,
     @Default(0) int weight,
     @Default('') @JsonKey(name: 'availabilityStatus') String availabilityStatus,
+    @Default([]) @JsonKey(name: 'reviews') List<Reviews> reviews,
   }) = _Products;
 
   factory Products.fromJson(Map<String, dynamic> json) =>
       _$ProductsFromJson(json);
+}
+
+@freezed
+class Reviews with _$Reviews {
+  factory Reviews({
+    @Default(0) int rating,
+    @Default('') String comment,
+    @Default('') @JsonKey(name: 'reviewerName') String reviewerName,
+    @Default('') @JsonKey(name: 'reviewerEmail') String reviewerEmail,
+  }) = _Reviews;
+
+  factory Reviews.fromJson(Map<String, dynamic> json) =>
+      _$ReviewsFromJson(json);
 }

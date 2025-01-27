@@ -16,8 +16,11 @@ class ProductCard extends StatelessWidget {
       width: 140,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, RoutesName.productDetail,
-              arguments: product);
+          Navigator.pushNamed(
+            context,
+            RoutesName.productDetail,
+            arguments: product,
+          );
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

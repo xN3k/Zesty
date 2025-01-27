@@ -13,8 +13,11 @@ class Routes {
         return MaterialPageRoute(builder: (context) => HomeScreen());
       case RoutesName.productDetail:
         Products argument = settings.arguments as Products;
+
         return MaterialPageRoute(
-            builder: (context) => ProductDetailScreen(productModel: argument));
+            builder: (context) => ProductDetailScreen(
+                  productModel: argument,
+                ));
       default:
         return MaterialPageRoute(
           builder: (context) => Center(

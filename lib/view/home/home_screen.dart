@@ -60,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       itemBuilder: (context, index) {
                         final product = productList.products[index];
-                        return ProductCard(product: product);
+                        return ProductCard(
+                          product: product,
+                        );
                       },
                     );
                   case Status.error:

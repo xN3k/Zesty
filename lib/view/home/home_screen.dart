@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zesty/bloc/product/product_bloc.dart';
 import 'package:zesty/data/response/response.dart';
 import 'package:zesty/dependency_injection/service_locator.dart';
-
-import 'widgets/product_card.dart';
+import 'package:zesty/view/home/widgets/home_header.dart';
+import 'package:zesty/view/home/widgets/product_grid.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,41 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Column(
                       // spacing: 20,
                       children: [
-                        TextFormField(
-                          controller: _searchController,
-                          decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.search),
-                            hintText: "Search",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                          ),
-                          onChanged: (value) {
-                            context
-                                .read<ProductBloc>()
-                                .add(SearchProduct(value));
-                          },
-                        ),
+                        HomeHeader(searchController: _searchController),
                         SizedBox(
                           height: 20,
                         ),
-                        Expanded(
-                          child: GridView.builder(
-                            itemCount: productList.products.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 0.7,
-                              mainAxisSpacing: 20,
-                              crossAxisSpacing: 16,
-                            ),
-                            itemBuilder: (context, index) {
-                              final product = productList.products[index];
-                              return ProductCard(
-                                product: product,
-                              );
-                            },
-                          ),
-                        ),
+                        ProductGrid(productList: productList),
                       ],
                     );
                   case Status.error:

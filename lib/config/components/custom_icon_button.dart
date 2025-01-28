@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IconButtonWidget extends StatelessWidget {
-  const IconButtonWidget({
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({
     super.key,
     required this.press,
     required this.icon,
@@ -13,12 +13,13 @@ class IconButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       style: IconButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-          fixedSize: Size(50, 50),
-          backgroundColor: Colors.grey.shade300),
-      // color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        fixedSize: Size(50, 50),
+        backgroundColor: Color(0xFF979797).withValues(alpha: 0.1),
+      ),
+      color: Color(0xFF757575),
       onPressed: press,
       icon: Icon(icon),
     );

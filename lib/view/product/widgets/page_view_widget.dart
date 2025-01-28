@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zesty/bloc/page/page_bloc.dart';
-import 'package:zesty/config/components/icon_button_widget.dart';
+import 'package:zesty/config/components/custom_icon_button.dart';
 import 'package:zesty/models/product/product_model.dart';
 
 class PageViewWidget extends StatelessWidget {
@@ -43,12 +43,12 @@ class PageViewWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButtonWidget(
+              CustomIconButton(
                   press: () {
                     Navigator.pop(context);
                   },
                   icon: Icons.arrow_back_ios_new),
-              IconButtonWidget(
+              CustomIconButton(
                   press: () {}, icon: Icons.shopping_cart_outlined),
             ],
           ),

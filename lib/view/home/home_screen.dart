@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late ProductBloc productBloc;
 
+  final _searchController = TextEditingController();
+
   @override
   void initState() {
     productBloc = ProductBloc(productApiRepository: getIt());
@@ -25,16 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     productBloc.close();
+    _searchController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Zesty"),
-        centerTitle: true,
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -49,21 +48,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   case Status.completed:
                     final productList = state.productList.data!;
-                    return GridView.builder(
-                      itemCount: productList.products.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 0.7,
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 16,
-                      ),
-                      itemBuilder: (context, index) {
-                        final product = productList.products[index];
-                        return ProductCard(
-                          product: product,
-                        );
-                      },
+                    return Column(
+                      // spacing: 20,
+                      children: [
+                        TextFormField(
+                          controller: _searchController,
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.search),
+                            hintText: "Search",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                          ),
+                          onChanged: (value) {
+                            context
+                                .read<ProductBloc>()
+                                .add(SearchProduct(value));
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: GridView.builder(
+                            itemCount: productList.products.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 200,
+                              childAspectRatio: 0.7,
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: 16,
+                            ),
+                            itemBuilder: (context, index) {
+                              final product = productList.products[index];
+                              return ProductCard(
+                                product: product,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     );
                   case Status.error:
                     return Center(

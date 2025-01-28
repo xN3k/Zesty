@@ -10,6 +10,8 @@ class ApiResponse<T> {
     this.message,
   });
 
+  // const ApiResponse.initial() : this._(status: Status.initial);
+
   const ApiResponse.loading() : this._(status: Status.loading);
 
   const ApiResponse.completed(T data)

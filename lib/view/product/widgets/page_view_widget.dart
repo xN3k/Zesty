@@ -43,7 +43,11 @@ class PageViewWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButtonWidget(press: () {}, icon: Icons.arrow_back_ios_new),
+              IconButtonWidget(
+                  press: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icons.arrow_back_ios_new),
               IconButtonWidget(
                   press: () {}, icon: Icons.shopping_cart_outlined),
             ],

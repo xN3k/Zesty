@@ -16,4 +16,10 @@ class ProductMockApiRepository implements ProductApiRepository {
     };
     return ProductModel.fromJson(responseData);
   }
+
+  @override
+  Future<ProductModel> searchProducts(String query) {
+    // TODO: implement searchProducts
+    throw UnimplementedError();
+  }
 }

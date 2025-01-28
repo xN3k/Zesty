@@ -11,13 +11,38 @@ part 'product_state.dart';
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductApiRepository productApiRepository;
   ProductBloc({required this.productApiRepository})
-      : super(const ProductState(productList: ApiResponse.loading())) {
+      : super(const ProductState(
+          productList: ApiResponse.loading(),
+          searchList: ApiResponse.loading(),
+        )) {
     on<FetchProducts>(_onFetchProducts);
+    on<SearchProduct>(_onSearchProduct);
   }
 
   Future<void> _onFetchProducts(
       FetchProducts event, Emitter<ProductState> emit) async {
     await productApiRepository.fetchProducts().then(
+      (value) {
+        emit(state.copyWith(productList: ApiResponse.completed(value)));
+      },
+    ).onError(
+      (error, stackTrace) {
+        if (kDebugMode) {
+          print(stackTrace);
+          print(error);
+        }
+        emit(state.copyWith(
+            productList: ApiResponse.error(
+          error.toString(),
+        )));
+      },
+    );
+  }
+
+  Future<void> _onSearchProduct(
+      SearchProduct event, Emitter<ProductState> emit) async {
+    final searchQuery = event.query;
+    await productApiRepository.searchProducts(searchQuery).then(
       (value) {
         emit(state.copyWith(productList: ApiResponse.completed(value)));
       },

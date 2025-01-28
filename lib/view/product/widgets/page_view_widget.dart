@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zesty/bloc/page/page_bloc.dart';
+import 'package:zesty/config/components/icon_button_widget.dart';
 import 'package:zesty/models/product/product_model.dart';
 
 class PageViewWidget extends StatelessWidget {
@@ -33,6 +34,16 @@ class PageViewWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
               );
             },
+          ),
+        ),
+        Positioned(
+          top: 40,
+          left: 10,
+          right: 10,
+          child: Row(
+            children: [
+              IconButtonWidget(press: () {}, icon: Icons.arrow_back_ios_new),
+            ],
           ),
         ),
         Positioned(
